@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/03 16:43:21 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/03 16:43:23 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	
-	ft_printf("%s\n", "Hello world!");
-
-	return 0;
+	while (*s != (char)c)
+	{
+		if (*s == '\0')
+			return (NULL);
+		s++;
+	}
+	return ((char *)s);
 }

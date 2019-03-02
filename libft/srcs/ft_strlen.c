@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/01 19:52:23 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/01 19:52:25 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+size_t	ft_strlen(const char *s)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	size_t i;
 
-	return 0;
+	i = 0;
+	while (*s++ != '\0')
+		i++;
+	return (i);
 }

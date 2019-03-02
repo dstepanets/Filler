@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/05 20:19:37 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/05 20:19:38 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	ft_striter(char *s, void (*f)(char *))
 {
-	
-	ft_printf("%s\n", "Hello world!");
-
-	return 0;
+	if (s && *s && f)
+	{
+		while (*s)
+			f(s++);
+	}
 }

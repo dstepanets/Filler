@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/02 16:16:05 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/02 16:16:07 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char	*save;
+	size_t	i;
 
-	return 0;
+	i = 0;
+	while (src[i] != '\0' && i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < len)
+		dst[i++] = '\0';
+	save = dst;
+	return (save);
 }

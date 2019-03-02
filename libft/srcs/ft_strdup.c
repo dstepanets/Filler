@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/01 20:25:13 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/01 20:25:26 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strdup(const char *s1)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char	*cpy;
+	int		i;
 
-	return 0;
+	i = 0;
+	while (s1[i])
+		i++;
+	cpy = (char *)malloc(i + 1);
+	if (cpy == 0)
+		return (0);
+	cpy[i] = '\0';
+	while (i >= 0)
+	{
+		cpy[i] = s1[i];
+		i--;
+	}
+	return (cpy);
 }

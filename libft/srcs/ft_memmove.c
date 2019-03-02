@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/10/27 21:18:26 by dstepane          #+#    #+#             */
+/*   Updated: 2018/10/27 21:18:28 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	return 0;
+	d = dest;
+	s = src;
+	if (s == d)
+		return (dest);
+	if (s < d)
+	{
+		s = s + n - 1;
+		d = d + n - 1;
+		while (n--)
+			*d-- = *s--;
+	}
+	else
+		while (n--)
+			*d++ = *s++;
+	return (dest);
 }

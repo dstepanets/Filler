@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/15 17:54:39 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/15 17:54:41 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+int		ft_sqrt(int nb)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	int	sq;
 
-	return 0;
+	if (nb == 0)
+		return (0);
+	sq = 1;
+	while (sq * sq <= nb)
+	{
+		if (sq * sq == nb)
+			return (sq);
+		sq++;
+	}
+	return (0);
 }

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/13 17:52:02 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/13 17:52:04 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	
-	ft_printf("%s\n", "Hello world!");
-
-	return 0;
+	if (lst && f)
+	{
+		while (lst)
+		{
+			f(lst);
+			lst = lst->next;
+		}
+	}
 }

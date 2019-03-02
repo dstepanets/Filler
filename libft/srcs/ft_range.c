@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/15 16:35:24 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/15 16:35:25 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+int		*ft_range(int min, int max)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	int	i;
+	int	*rng;
 
-	return 0;
+	i = 0;
+	if (min >= max)
+		return (NULL);
+	rng = (int*)malloc(sizeof(*rng) * (max - min));
+	while (min < max)
+	{
+		rng[i] = min;
+		min++;
+		i++;
+	}
+	return (rng);
 }

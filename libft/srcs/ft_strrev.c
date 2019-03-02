@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/14 20:50:36 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/14 20:50:40 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strrev(char *str)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	int		l;
+	int		i;
+	char	t;
 
-	return 0;
+	l = 0;
+	i = 0;
+	while (str[l])
+		l++;
+	l--;
+	while (i < l)
+	{
+		t = str[l];
+		str[l] = str[i];
+		str[i] = t;
+		i++;
+		l--;
+	}
+	return (str);
 }

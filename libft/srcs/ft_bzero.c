@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/10/27 17:57:00 by dstepane          #+#    #+#             */
+/*   Updated: 2018/10/27 17:57:02 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	ft_bzero(void *s, size_t n)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	unsigned char	*buf;
+	size_t			i;
 
-	return 0;
+	i = 0;
+	buf = (unsigned char *)s;
+	if (n == 0)
+		return ;
+	while (i < n)
+		buf[i++] = '\0';
 }

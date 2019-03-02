@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/03 18:40:59 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/03 18:41:01 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strstr(const char *hay, const char *ndl)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	int i;
+	int j;
 
-	return 0;
+	if (*ndl == '\0')
+		return ((char *)hay);
+	i = 0;
+	while (hay[i])
+	{
+		j = 0;
+		while (hay[i + j] == ndl[j])
+		{
+			if (ndl[j + 1] == '\0')
+				return ((char *)hay + i);
+			j++;
+		}
+		i++;
+	}
+	return (NULL);
 }

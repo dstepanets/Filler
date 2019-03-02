@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/10/27 20:38:50 by dstepane          #+#    #+#             */
+/*   Updated: 2018/10/27 20:38:52 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
-	return 0;
+	i = 0;
+	s1 = (unsigned char *)src;
+	s2 = (unsigned char *)dst;
+	while (i < n)
+	{
+		s2[i] = s1[i];
+		if (s1[i] == (unsigned char)c)
+			return (&s2[i + 1]);
+		i++;
+	}
+	return (NULL);
 }

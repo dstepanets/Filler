@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/05 19:01:08 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/05 19:01:09 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strnew(size_t size)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char	*str;
 
-	return 0;
+	if (!(str = (char *)malloc(size + 1)))
+		return (NULL);
+	ft_bzero(str, size + 1);
+	return (str);
 }

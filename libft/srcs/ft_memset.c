@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/10/27 16:42:27 by dstepane          #+#    #+#             */
+/*   Updated: 2018/10/27 16:42:29 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	size_t			i;
+	unsigned char	*ptr;
 
-	return 0;
+	i = 0;
+	ptr = b;
+	while (i < len)
+		ptr[i++] = c;
+	return (b);
 }

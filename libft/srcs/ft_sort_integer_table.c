@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sort_integer_table.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/15 15:46:20 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/15 15:46:21 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	ft_sort_integer_table(int *tab, int size)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	int i;
+	int t;
 
-	return 0;
+	i = 0;
+	while (i < size - 1)
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			t = tab[i + 1];
+			tab[i + 1] = tab[i];
+			tab[i] = t;
+			i = 0;
+		}
+		else
+			i++;
+	}
 }

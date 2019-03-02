@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/01 16:31:58 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/01 16:32:08 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	size_t			i;
+	unsigned char	*s2;
+	unsigned char	c2;
 
-	return 0;
+	i = 0;
+	s2 = (unsigned char *)s;
+	c2 = (unsigned char)c;
+	while (i < n)
+	{
+		if (s2[i] == (unsigned char)c2)
+			return ((void *)&s2[i]);
+		i++;
+	}
+	return (NULL);
 }

@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/02 18:40:48 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/02 18:40:50 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char *str;
 
-	return 0;
+	str = s1;
+	while (*s1)
+		s1++;
+	while (*s2 && n--)
+		*s1++ = *s2++;
+	*s1 = '\0';
+	return (str);
 }

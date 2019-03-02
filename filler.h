@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   filler.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2019/03/02 17:28:10 by dstepane          #+#    #+#             */
+/*   Updated: 2019/03/02 17:28:12 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#ifndef FILLER_H
+# define FILLER_H
 
-int		main(void)
-{
-	
-	ft_printf("%s\n", "Hello world!");
+# include "./libft/includes/libft.h"
 
-	return 0;
-}
+#endif

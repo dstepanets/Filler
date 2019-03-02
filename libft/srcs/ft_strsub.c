@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/07 16:57:43 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/07 16:57:45 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char	*sub;
+	size_t	i;
 
-	return 0;
+	if (s)
+	{
+		if (!(sub = (char *)malloc(len + 1)))
+			return (NULL);
+		i = 0;
+		while (s[start] && i < len)
+		{
+			sub[i] = s[start];
+			i++;
+			start++;
+		}
+		sub[len] = '\0';
+		return (sub);
+	}
+	return (NULL);
 }

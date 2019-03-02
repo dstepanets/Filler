@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/07 16:32:57 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/07 16:33:04 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char			*fresh;
+	unsigned int	i;
 
-	return 0;
+	if (!s || !f)
+		return (NULL);
+	fresh = (char *)malloc(ft_strlen(s) + 1);
+	if (!fresh)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		fresh[i] = f(i, s[i]);
+		i++;
+	}
+	fresh[i] = '\0';
+	return (fresh);
 }

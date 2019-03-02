@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/02 18:51:54 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/02 18:51:56 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	size_t	dlen;
+	size_t	slen;
 
-	return 0;
+	dlen = 0;
+	slen = ft_strlen(src);
+	while (*dst && dstsize > 0)
+	{
+		dst++;
+		dlen++;
+		dstsize--;
+	}
+	while (*src && dstsize > 1)
+	{
+		*dst++ = *src++;
+		dstsize--;
+	}
+	if (dstsize == 1 || *src == 0)
+		*dst = '\0';
+	return (slen + dlen);
 }

@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/05 16:30:33 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/05 16:30:35 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+void	*ft_memalloc(size_t size)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	void	*mem;
 
-	return 0;
+	mem = (void *)malloc(size);
+	if (mem == NULL)
+		return (NULL);
+	ft_bzero(mem, size);
+	return (mem);
 }

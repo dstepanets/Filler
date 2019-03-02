@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 16:46:58 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 16:46:59 by dstepane         ###   ########.fr       */
+/*   Created: 2018/11/07 18:24:19 by dstepane          #+#    #+#             */
+/*   Updated: 2018/11/07 18:24:21 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../includes/libft.h"
 
-int		main(void)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	
-	ft_printf("%s\n", "Hello world!");
+	char	*res;
+	int		i;
 
-	return 0;
+	if (!s1 || !s2)
+		return (NULL);
+	if (!(res = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+		return (NULL);
+	i = 0;
+	while (*s1)
+		res[i++] = *s1++;
+	while (*s2)
+		res[i++] = *s2++;
+	res[i] = '\0';
+	return (res);
 }
