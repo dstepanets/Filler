@@ -13,14 +13,37 @@
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-static void		parse_format2(t_pf *pf)
+static void			reset_specs(t_pf *pf)
+{
+	ft_bzero(pf->flags, 5);
+	pf->width = 0;
+	pf->prec = -1;
+	pf->len = no;
+}
+
+static t_pf			*init_specs(char *fmt)
+{
+	t_pf		*pf;
+
+	pf = (t_pf *)malloc(sizeof(t_pf));
+	pf->fmt = fmt;
+	pf->print = ft_strnew(1);
+	pf->ret = 0;
+	ft_bzero(pf->flags, 5);
+	pf->width = 0;
+	pf->prec = -1;
+	pf->len = no;
+	return (pf);
+}
+
+static void			parse_format2(t_pf *pf)
 {
 	reset_specs(pf);
 	pf->fmt++;
 	parse_flags(pf);
 }
 
-int				parse_format(t_pf *pf)
+static int			parse_format(t_pf *pf)
 {
 	int		i;
 	char	*txt;
@@ -48,30 +71,7 @@ int				parse_format(t_pf *pf)
 	return (pf->ret);
 }
 
-void			reset_specs(t_pf *pf)
-{
-	ft_bzero(pf->flags, 5);
-	pf->width = 0;
-	pf->prec = -1;
-	pf->len = no;
-}
-
-t_pf			*init_specs(char *fmt)
-{
-	t_pf		*pf;
-
-	pf = (t_pf *)malloc(sizeof(t_pf));
-	pf->fmt = fmt;
-	pf->print = ft_strnew(1);
-	pf->ret = 0;
-	ft_bzero(pf->flags, 5);
-	pf->width = 0;
-	pf->prec = -1;
-	pf->len = no;
-	return (pf);
-}
-
-int				ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
 	t_pf		*pf;
 	int			ret;

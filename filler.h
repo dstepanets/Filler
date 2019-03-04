@@ -15,4 +15,21 @@
 
 # include "./libft/includes/libft.h"
 
+typedef struct			s_flr
+{
+	char				*line;
+	char				me;
+	char				foe;
+	int					map_h;
+	int					map_w;
+	char				**map;
+	int					fig_h;
+	int					fig_w;
+	char				**fig;
+
+
+} 						t_flr;
+
+void					del_arr(char **arr);
+
 #endif
