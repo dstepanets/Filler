@@ -24,7 +24,6 @@ void			del_arr(char **arr)
 
 void			get_piece(t_flr *f)
 {
-	char	*line;
 	char	*leak;
 	int		i;
 	
@@ -33,10 +32,10 @@ void			get_piece(t_flr *f)
 	i = 0;
 	while (i < f->fig_h)
 	{
-		get_next_line(0, &line);
-		leak = line;
-		f->fig[i] = ft_strdup(line);
+		leak = f->line;
+		f->fig[i] = ft_strdup(f->line);
 		free(leak);
+		get_next_line(0, &f->line);
 		i++;
 	}
 	f->fig[i] = NULL;
@@ -44,81 +43,71 @@ void			get_piece(t_flr *f)
 
 void			get_piece_size(t_flr *f)
 {
-	char	*line;
 	char	**split;
 
-	get_next_line(0, &line);
-	split = ft_strsplit(line, ' ');
+	split = ft_strsplit(f->line, ' ');
 	f->fig_h = ft_atoi(split[1]);
 	f->fig_w = ft_atoi(split[2]);
-	del_arr(split);
-	ft_strdel(&line);
+//	del_arr(split);
 }
 
 void			get_map(t_flr *f)
 {
-	char	*line;
 	char	*leak;
 	int		i;
 	
 	if (!(f->map = (char **)malloc(sizeof(char *) * f->map_h) + 1))
 		return ;
-	get_next_line(0, &line);
-//	printf("line: %s\n", line);
-	ft_strdel(&line);
-	line = NULL;
 	i = 0;
 	while (i < f->map_h)
 	{
-		get_next_line(0, &line);
-		leak = line;
-//		printf("line: %s\n", line);
-		f->map[i] = ft_strsub(line, 4, f->map_w);
+		leak = f->line;
+		printf("line: %s\n", f->line);
+		f->map[i] = ft_strsub(f->line, 4, f->map_w);
 		free(leak);
+		get_next_line(0, &f->line);
 		i++;
 	}
-//	f->map[i] = NULL;
+	f->map[i] = NULL;
 }
 
 void			get_mapsize(t_flr *f)
 {
-	char	*line;
 	char	**split;
 
 	split = NULL;
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &f->line) > 0)
 	{	
-		if (!ft_strncmp(line, "Plateau", 7))
+		if (!ft_strncmp(f->line, "Plateau", 7))
 		{
-			split = ft_strsplit(line, ' ');
+			split = ft_strsplit(f->line, ' ');
 			f->map_h = ft_atoi(split[1]);
 			f->map_w = ft_atoi(split[2]);
 			break ;
 		}
-		ft_strdel(&line);
+		ft_strdel(&f->line);
 	}
-	del_arr(split);
-	ft_strdel(&line);
+//	del_arr(split);
+//	ft_strdel(&f->line);
 }
 
 void			whoiswho(t_flr *f)
 {
-	char	*line;
 	char	*ptr;
 
-	while (get_next_line(0, &line))
+	while (get_next_line(0, &f->line))
 	{
 //		printf("line: %s\n", line);
-		if ((ptr = ft_strstr(line, "[./dstepane.filler]")))
+		if ((ptr = ft_strstr(f->line, "[./dstepane.filler]")))
 		{
 			ptr -= 4;
 			break ;
 		}
-		ft_strdel(&line);
+		ft_strdel(&f->line);
 	}
 	f->me = (*ptr == '1') ? '0' : 'X';
 	f->foe = (f->me == '0') ? 'X' : '0';
-	ft_strdel(&line);
+	ft_strdel(&f->line);
 }
 
 void 		init_struct(t_flr *f)
@@ -134,6 +123,21 @@ void 		init_struct(t_flr *f)
 	f->fig = NULL;
 }
 
+int			parser(t_flr *f)
+{
+	while (get_next_line(0, &f->line) > 0)
+	{
+		if (!ft_strncmp("000 ", f->line, 4))
+			get_map(f);
+		else if (!ft_strncmp("Piece", f->line, 5))
+			get_piece_size(f);
+		else if (f->line[0] == '.' || f->line[0] == '*')
+			get_piece(f);
+		ft_strdel(&f->line);
+	}
+	return (1);
+}
+
 int			main(void)
 {
 	t_flr	*f;
@@ -143,21 +147,19 @@ int			main(void)
 	init_struct(f);
 	whoiswho(f);
 	get_mapsize(f);
-	get_map(f);
-	get_piece_size(f);
-	get_piece(f);
+	parser(f);
 	for (int z = 0; z < f->map_h; z++)
-		printf("%0.3d: %s\n", z, f->map[z]);
-//	printf("me: %c, foe: %c\n", f->me, f->foe);
-//	printf("mh: %d, mw: %d\n", f->map_h, f->map_w);
+		printf("%0.4d: %s\n", z, f->map[z]);
+	printf("me: %c, foe: %c\n", f->me, f->foe);
+	printf("mh: %d, mw: %d\n", f->map_h, f->map_w);
 	printf("fh: %d, fw: %d\n", f->fig_h, f->fig_w);
 	for (int z = 0; z < f->fig_h; z++)
 		printf("%0.2d: %s\n", z, f->fig[z]);
 	ft_putstr_fd("1 1\n", 2);
 	free((void *)f);
 
-//	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
-//	system("leaks dstepane.filler");
+	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
+	system("leaks dstepane.filler");
 	return (0);
 }
 
