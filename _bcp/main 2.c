@@ -163,7 +163,7 @@ int			main(void)
 
 
 //	./filler_vm -f maps/map00 -p1 players/champely.filler -p2 ./dstepane.filler
-//	./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 ./players/grati.filler
+
 /*
 ./filler_vm -f maps/map00 -p1 players/champely.filler -p2 ./dstepane.filler
 # -------------- VM  version 1.1 ------------- #
