@@ -12,16 +12,6 @@
 
 #include "filler.h"
 
-void			del_arr(char **arr)
-{
-	int		i;
-
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
 void			get_piece(t_flr *f)
 {
 	int		i;
@@ -137,11 +127,13 @@ int			parser(t_flr *f)
 
 int			main(void)
 {
-	t_flr	*f;
-		FILE *fp;									/// TEST
-		fp = freopen("./feed.txt", "r", stdin); 		/// TEST
-	
-	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
+
+	printf("I'm your God, The Machine!\n");
+
+//	t_flr	*f;
+//		FILE *fp;									/// TEST
+//		fp = freopen("./feed.txt", "r", stdin); 		/// TEST
+/*	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
 		return (-1);
 	init_struct(f);
 	whoiswho(f);
@@ -154,10 +146,14 @@ int			main(void)
 			printf("fh: %d, fw: %d\n", f->fig_h, f->fig_w);
 			for (int z = 0; z < f->fig_h; z++)
 				printf("%0.2d: %s\n", z, f->fig[z]);
-	free((void *)f);
-		fclose(fp);											/// TEST
+	del_arr(f->fig);
+	del_map(f);
+//	del_arr(f->map);
 
-	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
+	free((void *)f);
+//		fclose(fp);											/// TEST
+
+*/	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
 	system("leaks dstepane.filler");
 	return (0);
 }

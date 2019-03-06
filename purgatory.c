@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
+/*   purgatory.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dstepane <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 17:28:10 by dstepane          #+#    #+#             */
-/*   Updated: 2019/03/02 17:28:12 by dstepane         ###   ########.fr       */
+/*   Created: 2019/03/06 18:50:40 by dstepane          #+#    #+#             */
+/*   Updated: 2019/03/06 18:50:43 by dstepane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLER_H
-# define FILLER_H
+#include "filler.h"
 
-# include "./libft/includes/libft.h"
-
-typedef struct			s_flr
+void			del_arr(char **arr)
 {
-	char				*line;
-	char				me;
-	char				foe;
-	int					map_h;
-	int					map_w;
-	char				**map;
-	int					fig_h;
-	int					fig_w;
-	char				**fig;
+	int		i;
 
-} 						t_flr;
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
 
-void					del_arr(char **arr);
-void					del_map(t_flr *f);
+void			del_map(t_flr *f)
+{
+	int		i;
 
-#endif
+	i = 0;
+	while (i < f->map_h)
+		ft_strdel(&f->map[i++]);
+//	f->map = NULL;
+//	free(f->map);
+}
