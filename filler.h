@@ -27,7 +27,6 @@ typedef struct			s_flr
 	int					fig_w;
 	char				**fig;
 
-
 } 						t_flr;
 
 void					del_arr(char **arr);
