@@ -127,13 +127,10 @@ int			parser(t_flr *f)
 
 int			main(void)
 {
-
-	printf("I'm your God, The Machine!\n");
-
-//	t_flr	*f;
-//		FILE *fp;									/// TEST
-//		fp = freopen("./feed.txt", "r", stdin); 		/// TEST
-/*	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
+	t_flr	*f;
+		FILE *fp;									/// TEST
+		fp = freopen("./feed.txt", "r", stdin); 		/// TEST
+	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
 		return (-1);
 	init_struct(f);
 	whoiswho(f);
@@ -148,12 +145,11 @@ int			main(void)
 				printf("%0.2d: %s\n", z, f->fig[z]);
 	del_arr(f->fig);
 	del_map(f);
-//	del_arr(f->map);
 
 	free((void *)f);
-//		fclose(fp);											/// TEST
+		fclose(fp);											/// TEST
 
-*/	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
+	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
 	system("leaks dstepane.filler");
 	return (0);
 }

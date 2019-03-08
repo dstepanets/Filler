@@ -12,7 +12,7 @@
 
 NAME = dstepane.filler
 CC = gcc
-FLAGS = -g -Wall -Wextra -Werror###debugging FLAG -g!!!!
+FLAGS = -g -Wall -Wextra -Werror###debugging FLAG -g! Don't foreget libft too!!!!
 HEAD = ./filler.h
 SRC = 	main.c \
 		purgatory.c
@@ -25,9 +25,9 @@ LIBFT = libft/libft.a
 all: fclean $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -I $(HEAD) $(LIBFT) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 	@echo "\033[32mFiller executable compiled.\033[0m"
-	make clean
+##	make clean
 
 $(LIBFT):
 	@make -C libft
