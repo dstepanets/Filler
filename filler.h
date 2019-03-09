@@ -14,6 +14,7 @@
 # define FILLER_H
 
 # include "./libft/includes/libft.h"
+# include "mem.h"
 
 typedef struct			s_flr
 {

@@ -43,15 +43,15 @@ void			get_map(t_flr *f)
 {
 	int		i;
 	
-	if (!(f->map = (char **)malloc(sizeof(char *) * f->map_h) + 1))
-		return ;
+	if (!(f->map = ft_memalloc(sizeof(char *) * f->map_h + 1)))
+		return ;	
 	i = 0;
 	while (i < f->map_h)
 	{
 		ft_strdel(&f->line);
 		get_next_line(0, &f->line);
 		printf("ml: %s\n", f->line);
-		f->map[i++] = ft_strsub(f->line, 4, f->map_w);
+		f->map[i++] = ft_strdup(f->line + 4);
 	}
 	f->map[i] = NULL;
 }
@@ -145,10 +145,10 @@ int			main(void)
 				printf("%0.2d: %s\n", z, f->fig[z]);
 	del_arr(f->fig);
 	del_map(f);
+	ft_strdel(&f->line);
 
 	free((void *)f);
 		fclose(fp);											/// TEST
-
 	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
 	system("leaks dstepane.filler");
 	return (0);

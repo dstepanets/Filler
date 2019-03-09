@@ -15,7 +15,8 @@ CC = gcc
 FLAGS = -g -Wall -Wextra -Werror###debugging FLAG -g! Don't foreget libft too!!!!
 HEAD = ./filler.h
 SRC = 	main.c \
-		purgatory.c
+		purgatory.c \
+		mem.c 				###remove
 
 OBJS = $(SRC:.c=.o)
 LIBFT = libft/libft.a
@@ -25,7 +26,7 @@ LIBFT = libft/libft.a
 all: fclean $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LIBFT) libmemd.a -o $(NAME)  ###remove libmemd.a
 	@echo "\033[32mFiller executable compiled.\033[0m"
 ##	make clean
 

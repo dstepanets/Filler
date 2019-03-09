@@ -29,6 +29,5 @@ void			del_map(t_flr *f)
 	i = 0;
 	while (i < f->map_h)
 		ft_strdel(&f->map[i++]);
-//	f->map = NULL;
-//	free(f->map);
+	free(f->map);
 }
