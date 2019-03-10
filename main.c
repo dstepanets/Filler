@@ -91,8 +91,8 @@ void			whoiswho(t_flr *f)
 		}
 		ft_strdel(&f->line);
 	}
-	f->me = (*ptr == '1') ? '0' : 'X';
-	f->foe = (f->me == '0') ? 'X' : '0';
+	f->me = (*ptr == '1') ? 'O' : 'X';
+	f->foe = (f->me == 'O') ? 'X' : 'O';
 	ft_strdel(&f->line);
 }
 
@@ -107,6 +107,7 @@ void 		init_struct(t_flr *f)
 	f->fig_h = 0;
 	f->fig_w = 0;
 	f->fig = NULL;
+	f->hm = NULL;
 }
 
 int			parser(t_flr *f)
@@ -138,19 +139,31 @@ int			main(void)
 	get_mapsize(f);
 			printf("mh: %d, mw: %d\n", f->map_h, f->map_w);
 	parser(f);
-			for (int z = 0; z < f->map_h; z++)
-				printf("%0.4d: %s\n", z, f->map[z]);
+			for (int i = 0; i < f->map_h; i++)
+				printf("%0.4d: %s\n", i, f->map[i]);
 			printf("fh: %d, fw: %d\n", f->fig_h, f->fig_w);
-			for (int z = 0; z < f->fig_h; z++)
-				printf("%0.2d: %s\n", z, f->fig[z]);
+			for (int i = 0; i < f->fig_h; i++)
+				printf("%0.2d: %s\n", i, f->fig[i]);
+	if (create_heatmap(f))
+		return (-1);
+	make_heatmap(f);
+			int	y = 0;
+			while (y < f->map_h)								///////TEMP
+			{
+				for (int x = 0; x < f->map_w; x++)
+					printf("|%2d ", f->hm[y][x]);
+				printf("|\n");
+				y++;
+			}
 	del_arr(f->fig);
 	del_map(f);
+	del_heatmap(f);
 	ft_strdel(&f->line);
 
 	free((void *)f);
 		fclose(fp);											/// TEST
-	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
-	system("leaks dstepane.filler");
+//	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
+//	system("leaks dstepane.filler");
 	return (0);
 }
 

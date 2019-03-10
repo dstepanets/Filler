@@ -14,7 +14,7 @@
 # define FILLER_H
 
 # include "./libft/includes/libft.h"
-# include "mem.h"
+//# include "mem.h"
 
 typedef struct			s_flr
 {
@@ -27,10 +27,15 @@ typedef struct			s_flr
 	int					fig_h;
 	int					fig_w;
 	char				**fig;
+	int					**hm;
 
 } 						t_flr;
 
 void					del_arr(char **arr);
 void					del_map(t_flr *f);
+void					del_heatmap(t_flr *f);
+
+int						create_heatmap(t_flr *f);
+void					make_heatmap(t_flr *f);
 
 #endif
