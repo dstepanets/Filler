@@ -32,7 +32,7 @@ void			get_piece(t_flr *f)
 void			get_piece_size(t_flr *f)
 {
 	char	**split;
-	printf("gpsl: %s\n", f->line);
+//	printf("gpsl: %s\n", f->line);
 	split = ft_strsplit(f->line, ' ');
 	f->fig_h = ft_atoi(split[1]);
 	f->fig_w = ft_atoi(split[2]);
@@ -50,7 +50,7 @@ void			get_map(t_flr *f)
 	{
 		ft_strdel(&f->line);
 		get_next_line(0, &f->line);
-		printf("ml: %s\n", f->line);
+//		printf("ml: %s\n", f->line);
 		f->map[i++] = ft_strdup(f->line + 4);
 	}
 	f->map[i] = NULL;
@@ -63,7 +63,7 @@ void			get_mapsize(t_flr *f)
 	split = NULL;
 	while (get_next_line(0, &f->line) > 0)
 	{	
-		printf("line: %s\n", f->line);
+//		printf("line: %s\n", f->line);
 		if (!ft_strncmp(f->line, "Plateau", 7))
 		{
 			split = ft_strsplit(f->line, ' ');
@@ -83,7 +83,7 @@ void			whoiswho(t_flr *f)
 
 	while (get_next_line(0, &f->line))
 	{
-		printf("line: %s\n", f->line);
+//		printf("line: %s\n", f->line);
 		if ((ptr = ft_strstr(f->line, "[./dstepane.filler]")))
 		{
 			ptr -= 4;
@@ -114,7 +114,7 @@ int			parser(t_flr *f)
 {
 	while (get_next_line(0, &f->line) > 0)
 	{
-		printf("line: %s\n", f->line);
+//		printf("ln: %s\n", f->line);
 		if (!ft_strncmp("    0", f->line, 5))
 			get_map(f);
 		else if (!ft_strncmp("Piece", f->line, 5))
@@ -129,25 +129,28 @@ int			parser(t_flr *f)
 int			main(void)
 {
 	t_flr	*f;
-		FILE *fp;									/// TEST
-		fp = freopen("./feed.txt", "r", stdin); 		/// TEST
+	t_plc	*p;
+//		FILE *fp;									/// TEST
+//		fp = freopen("./feed1.txt", "r", stdin); 		/// TEST
 	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
 		return (-1);
+//	dprintf(1, "8 2\n");
+//	return (0);
 	init_struct(f);
 	whoiswho(f);
-			printf("me: %c, foe: %c\n", f->me, f->foe);
+//			printf("me: %c, foe: %c\n", f->me, f->foe);
 	get_mapsize(f);
-			printf("mh: %d, mw: %d\n", f->map_h, f->map_w);
+//			printf("mh: %d, mw: %d\n", f->map_h, f->map_w);
 	parser(f);
-			for (int i = 0; i < f->map_h; i++)
+/*			for (int i = 0; i < f->map_h; i++)
 				printf("%0.4d: %s\n", i, f->map[i]);
 			printf("fh: %d, fw: %d\n", f->fig_h, f->fig_w);
 			for (int i = 0; i < f->fig_h; i++)
 				printf("%0.2d: %s\n", i, f->fig[i]);
-	if (create_heatmap(f))
+*/	if (create_heatmap(f))
 		return (-1);
 	make_heatmap(f);
-			int	y = 0;
+/*			int	y = 0;
 			while (y < f->map_h)								///////TEMP
 			{
 				for (int x = 0; x < f->map_w; x++)
@@ -155,20 +158,23 @@ int			main(void)
 				printf("|\n");
 				y++;
 			}
+*/	p = find_homeland(f);
+	ft_printf("%d %d\n", p->by, p->bx);		//"Y X\n" - right order!
 	del_arr(f->fig);
 	del_map(f);
 	del_heatmap(f);
 	ft_strdel(&f->line);
-
 	free((void *)f);
-		fclose(fp);											/// TEST
+	free((void *)p);
+
+//		fclose(fp);											/// TEST
 //	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
 //	system("leaks dstepane.filler");
 	return (0);
 }
 
 
-//	./filler_vm -f maps/map00 -p1 players/champely.filler -p2 ./dstepane.filler
+//	./filler_vm -f maps/map00 -p1 ./dstepane.filler -p2 players/champely.filler 
 //	./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 ./players/grati.filler
 /*
 ./filler_vm -f maps/map00 -p1 players/champely.filler -p2 ./dstepane.filler

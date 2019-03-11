@@ -28,8 +28,24 @@ typedef struct			s_flr
 	int					fig_w;
 	char				**fig;
 	int					**hm;
-
+	
 } 						t_flr;
+
+typedef struct			s_plc
+{
+	int					i;
+	int					j;
+	
+	int					y;
+	int					x;
+	int					val;
+
+	int					by;
+	int					bx;
+	int					bval;
+
+}						t_plc;
+
 
 void					del_arr(char **arr);
 void					del_map(t_flr *f);
@@ -37,5 +53,9 @@ void					del_heatmap(t_flr *f);
 
 int						create_heatmap(t_flr *f);
 void					make_heatmap(t_flr *f);
+
+t_plc					*find_homeland(t_flr *f);
+
+
 
 #endif
