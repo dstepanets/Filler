@@ -18,7 +18,7 @@ SRC = 	main.c \
 		purgatory.c \
 		heat_map.c \
 		algorithm.c \
-	#	mem.c 				###remove
+#		mem.c 				###remove
 
 OBJS = $(SRC:.c=.o)
 LIBFT = libft/libft.a

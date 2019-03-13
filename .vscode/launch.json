@@ -8,7 +8,6 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-		//	"program": "${workspaceFolder}/a.out",
 			"program": "${workspaceFolder}/dstepane.filler",
 			"args": [],
 			"stopAtEntry": true,

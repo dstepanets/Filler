@@ -17,9 +17,17 @@ void			del_heatmap(t_flr *f)
 	int		i;
 
 	i = 0;
-	while (i < f->map_h)
-		free(f->hm[i++]);
-	free(f->hm);
+	if (f->hm)
+	{
+		while (i < f->map_h)
+		{
+			ft_bzero(f->hm[i], f->map_w);
+			free(f->hm[i++]);
+		}
+		ft_memdel((void **)&f->hm);
+//		free(f->hm);
+//		f->hm = NULL;
+	}
 }
 
 void			del_arr(char **arr)
@@ -27,9 +35,34 @@ void			del_arr(char **arr)
 	int		i;
 
 	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
+	if (arr)
+	{
+		while (arr[i])
+			free(arr[i++]);
+//		free(arr);
+		ft_memdel((void **)&arr);
+//		arr = NULL;
+	}
+}
+
+void			del_piece(t_flr *f)
+{
+	int		i;
+
+	i = 0;
+	f->fig_h = 0;
+	f->fig_w = 0;
+	if (f->fig)
+	{
+		while (i < f->fig_h)
+		{
+			ft_bzero(f->fig[i], f->fig_w);
+			ft_strdel(&f->fig[i++]);
+		}
+//		free(f->fig);
+//		f->fig = NULL;
+		ft_memdel((void **)&f->fig);
+	}
 }
 
 void			del_map(t_flr *f)
@@ -37,7 +70,14 @@ void			del_map(t_flr *f)
 	int		i;
 
 	i = 0;
-	while (i < f->map_h)
-		ft_strdel(&f->map[i++]);
-	free(f->map);
+	if (f->map)
+	{
+		while (i < f->map_h)
+		{
+			ft_bzero(f->map[i], f->map_w);
+			ft_strdel(&f->map[i++]);
+		}
+		free(f->map);
+		f->map = NULL;
+	}
 }

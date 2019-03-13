@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-static void 		init_struct_place(t_plc *p)
+void 		init_struct_place(t_plc *p)
 {
 	p->i = 0;
 	p->j = 0;
@@ -49,7 +49,7 @@ int				try_place(t_flr *f, t_plc *p)
 			{
 				if ((p->y + p->i >= f->map_h) || (p->x + p->j >= f->map_w))
 					return (0);
-				else if (f->map[p->y + p->i][p->x + p->j] == ft_toupper(f->me))
+				else if (ft_toupper(f->map[p->y + p->i][p->x + p->j]) == f->me)
 				{
 					touch++;
 					if (touch > 1)
@@ -107,7 +107,7 @@ t_plc			*find_homeland(t_flr *f)
 	{
 		while (p->x < f->map_w && p->y < f->map_h)
 		{
-			if (f->map[p->y][p->x] == ft_toupper(f->me))
+			if (ft_toupper(f->map[p->y][p->x]) == f->me)
 				offset(f, p);
 			p->x++;
 		}
