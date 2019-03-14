@@ -12,21 +12,31 @@
 
 #include "filler.h"
 
+/*
+void	print_map(t_flr *f)						///////TEMP
+{
+	for (int i = 0; i < f->map_h; i++)
+		printf("%0.3d: %s\n", i, f->map[i]);
+	printf("\n========================================================================\n");
+}
+*/
+/*
 void	print_heatmap(t_flr *f)							///////TEMP
 {
 		int	y = 0;
+		dprintf(2, "\n");
 		while (y < f->map_h)								
 		{
 			for (int x = 0; x < f->map_w; x++)
-				printf("|%2d ", f->hm[y][x]);
-			printf("|\n");
+				dprintf(2, "|%2d ", f->hm[y][x]);
+			dprintf(2, "|\n");
 			y++;
 		}
-		printf("\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
+		dprintf(2, "\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
+*/
 
-
-static int		assign_heat(t_flr *f, int i, int x, int y)
+static int		assign_heat(t_flr *f, intmax_t i, int x, int y)
 {
 	f->map_h--;
 	f->map_w--;
@@ -49,7 +59,7 @@ static int		assign_heat(t_flr *f, int i, int x, int y)
 	return (0);
 }
 
-static void			fill_heatmap2(t_flr *f, int i, int *done)
+static void			fill_heatmap2(t_flr *f, intmax_t i, intmax_t *done)
 {
 	int		x;
 	int		y;
@@ -57,7 +67,6 @@ static void			fill_heatmap2(t_flr *f, int i, int *done)
 	y = 0;
 	while (y < f->map_h)
 	{
-		x = 0;
 		while (x < f->map_w)
 		{
 			if (f->hm[y][x] == 99)
@@ -67,15 +76,16 @@ static void			fill_heatmap2(t_flr *f, int i, int *done)
 			}
 			x++;
 		}
+		x = 0;
 		y++;
 	}
 }
 
 void			fill_heatmap(t_flr *f)
 {
-	int		i;
-	int		done;
-	int		save;
+	intmax_t		i;
+	intmax_t		done;
+	intmax_t		save;
 
 	i = 0;
 	done = 0;
@@ -84,7 +94,8 @@ void			fill_heatmap(t_flr *f)
 	{
 		save = done;
 		fill_heatmap2(f, i, &done);
-		print_heatmap(f);
+//		print_heatmap(f);
+//		print_map(f);
 		i++;
 	}
 }
@@ -115,7 +126,7 @@ int				create_heatmap(t_flr *f)
 	int		y;
 
 	y = 0;
-	if (!(f->hm = (int **)malloc(sizeof(int *) * f->map_h)))
+	if (!(f->hm = (int **)malloc(sizeof(int *) * f->map_h + 1)))
 		return (-1);
 	while (y < f->map_h)
 	{
@@ -129,5 +140,6 @@ int				create_heatmap(t_flr *f)
 		}
 		create_heatmap2(f, &y);
 	}
+	f->hm[y] = NULL;
 	return (0);
 }		

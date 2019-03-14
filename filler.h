@@ -52,6 +52,9 @@ void					del_map(t_flr *f);
 void					del_piece(t_flr *f);
 void					del_heatmap(t_flr *f);
 
+void	print_heatmap(t_flr *f); ////
+void	print_map(t_flr *f); //
+
 int						create_heatmap(t_flr *f);
 void					fill_heatmap(t_flr *f);
 

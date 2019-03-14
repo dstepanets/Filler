@@ -158,6 +158,7 @@ int			main(void)
 			if (create_heatmap(f) == -1)
 				return (-1);
 			fill_heatmap(f);
+//				print_heatmap(f); 
 			p = find_homeland(f);
 			ft_printf("%d %d\n", p->by, p->bx);		//"Y X\n" - right order!
 			del_piece(f);
@@ -183,7 +184,6 @@ int			main(void)
 				y++;
 			}
 */	
-
 	free((void *)f);
 
 	fclose(fp);											/// TEST
