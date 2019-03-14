@@ -23,6 +23,7 @@ void			get_piece(t_flr *f)
 	i = 0;
 	while (i < f->fig_h)
 	{
+//			dprintf(2, "gp_line: %s\n", f->line);   // 
 		f->fig[i++] = ft_strdup(f->line);
 		ft_strdel(&f->line);
 		if (i < f->fig_h)
@@ -34,7 +35,7 @@ void			get_piece(t_flr *f)
 void			get_piece_size(t_flr *f)
 {
 	char	**split;
-//	printf("gpsl: %s\n", f->line);
+
 	split = ft_strsplit(f->line, ' ');
 	f->fig_h = ft_atoi(split[1]);
 	f->fig_w = ft_atoi(split[2]);
@@ -50,11 +51,12 @@ void			get_map(t_flr *f)
 	if (!(f->map = ft_memalloc(sizeof(char *) * f->map_h + 1)))
 		return ;	
 	i = 0;
+//		usleep(1000); ////
 	while (i < f->map_h)
 	{
+//			dprintf(2, "> gmap_line: %s\n", f->line);   // 
 		ft_strdel(&f->line);
 		get_next_line(0, &f->line);
-//		printf("ml: %s\n", f->line);
 		f->map[i++] = ft_strdup(f->line + 4);
 	}
 	f->map[i] = NULL;
@@ -67,7 +69,7 @@ void			get_mapsize(t_flr *f)
 	split = NULL;
 	while (get_next_line(0, &f->line) > 0)
 	{	
-//		printf("line: %s\n", f->line);
+//			dprintf(2, "> mapsize_line: %s\n", f->line);   // 
 		if (!ft_strncmp(f->line, "Plateau", 7))
 		{
 			split = ft_strsplit(f->line, ' ');
@@ -88,7 +90,6 @@ void			whoiswho(t_flr *f)
 	ptr = NULL;
 	while (get_next_line(0, &f->line))
 	{
-//		printf("line: %s\n", f->line);
 		if ((ptr = ft_strstr(f->line, "[./dstepane.filler]")))
 		{
 			ptr -= 4;
@@ -120,13 +121,22 @@ void 		init_struct(t_flr *f)
 
 int			parser(t_flr *f)
 {
-
+//		dprintf(2, "> pars_line: %s\n", f->line);   // 
 	if (!ft_strncmp("    0", f->line, 5))
+{
 		get_map(f);
+//			print_map(f);  //
+}
 	else if (!ft_strncmp("Piece", f->line, 5))
+	{
 		get_piece_size(f);
+//			dprintf(2, ">> piece size: %d, %d\n", f->fig_h, f->fig_w);  // 
+	}
 	else if (f->line[0] == '.' || f->line[0] == '*')
+	{
 		get_piece(f);
+			print_piece(f);
+	}
 	if (f->map && f->fig)
 		return (1);
 	return (0);
@@ -136,8 +146,8 @@ int			main(void)
 {
 	t_flr	*f = NULL;
 	t_plc	*p = NULL;
-		FILE *fp;									/// TEST
-		fp = freopen("./feed1.txt", "r", stdin); 		/// TEST
+//		FILE *fp;									/// TEST
+//		fp = freopen("./feed1.txt", "r", stdin); 		/// TEST
 
 	if (!f && !p) 
 	{
@@ -148,18 +158,19 @@ int			main(void)
 		whoiswho(f);
 //			printf("me: %c, foe: %c\n", f->me, f->foe);
 		get_mapsize(f);
-//			printf("mh: %d, mw: %d\n", f->map_h, f->map_w);
+//			dprintf(2, ">> mh: %d, mw: %d\n", f->map_h, f->map_w);   //
 	}
 	while (get_next_line(0, &f->line) > 0)
 	{
-//		printf("ln: %s\n", f->line);
+			dprintf(2, "> ln: %s\n", f->line);   // 
 		if (parser(f))
 		{
 			if (create_heatmap(f) == -1)
 				return (-1);
 			fill_heatmap(f);
-//				print_heatmap(f); 
+//				print_heatmap(f); //
 			p = find_homeland(f);
+//				dprintf(2, "Y:%d X:%d\n", p->by, p->bx);   // 
 			ft_printf("%d %d\n", p->by, p->bx);		//"Y X\n" - right order!
 			del_piece(f);
 			del_map(f);
@@ -186,7 +197,7 @@ int			main(void)
 */	
 	free((void *)f);
 
-	fclose(fp);											/// TEST
+//	fclose(fp);											/// TEST
 
 //	printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
 //	system("leaks -q dstepane.filler");
