@@ -20,6 +20,7 @@ void			get_piece(t_flr *f)
 		del_piece(f);
 	if (!(f->fig = ft_memalloc(sizeof(char *) * f->fig_h + 1)))
 		return ;
+	f->fig = ft_memalloc(sizeof(char *) * f->fig_h + 1);
 	i = 0;
 	while (i < f->fig_h)
 	{
@@ -49,7 +50,7 @@ void			get_map(t_flr *f)
 	if (f->map)
 		del_map(f);
 	if (!(f->map = ft_memalloc(sizeof(char *) * f->map_h + 1)))
-		return ;	
+		return ;
 	i = 0;
 //		usleep(1000); ////
 	while (i < f->map_h)
@@ -127,18 +128,21 @@ int			parser(t_flr *f)
 		get_map(f);
 //			print_map(f);  //
 }
-	else if (!ft_strncmp("Piece", f->line, 5))
+	if (!ft_strncmp("Piece", f->line, 5))
 	{
 		get_piece_size(f);
 //			dprintf(2, ">> piece size: %d, %d\n", f->fig_h, f->fig_w);  // 
 	}
-	else if (f->line[0] == '.' || f->line[0] == '*')
+	if (f->line[0] == '.' || f->line[0] == '*')
 	{
 		get_piece(f);
-			print_piece(f);
+//			print_piece(f);
 	}
 	if (f->map && f->fig)
+	{
+//		dprintf(2, "> par_ln: %s\n", f->line);
 		return (1);
+	}
 	return (0);
 }
 
@@ -149,20 +153,19 @@ int			main(void)
 //		FILE *fp;									/// TEST
 //		fp = freopen("./feed1.txt", "r", stdin); 		/// TEST
 
-	if (!f && !p) 
-	{
-		if (!(f = (t_flr *)malloc(sizeof(t_flr))))
-			return (-1);
-		ft_bzero(f, sizeof(t_flr));
-		init_struct(f);
-		whoiswho(f);
-//			printf("me: %c, foe: %c\n", f->me, f->foe);
-		get_mapsize(f);
+	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
+		return (-1);
+	ft_bzero(f, sizeof(t_flr));
+	init_struct(f);
+	whoiswho(f);
+//			printf("me: %c, foe: %c\n", f->me, f->foe); //
+	get_mapsize(f);
 //			dprintf(2, ">> mh: %d, mw: %d\n", f->map_h, f->map_w);   //
-	}
 	while (get_next_line(0, &f->line) > 0)
 	{
-			dprintf(2, "> ln: %s\n", f->line);   // 
+//			dprintf(2, "> ln: %s\n", f->line);   // 
+//			dprintf(2, "> map_h: %d, map_w: %d\n", f->map_h, f->map_w);   // 
+//			dprintf(2, "> fig_h: %d, fig_w: %d\n", f->fig_h, f->fig_w);   // 
 		if (parser(f))
 		{
 			if (create_heatmap(f) == -1)

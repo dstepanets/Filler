@@ -14,6 +14,7 @@
 
 void	print_piece(t_flr *f)
 {
+	usleep(1000);
 	dprintf(2, ">> PIECE:\n");
 	for (int i = 0; i < f->fig_h; i++)
 		dprintf(2, "%s\n", f->fig[i]);
@@ -22,7 +23,7 @@ void	print_piece(t_flr *f)
 
 void	print_map(t_flr *f)						///////TEMP
 {
-	usleep(10000);
+	usleep(1000);
 	dprintf(2, "map  ");
 	int j = 0;
 	for (int i = 0; i < f->map_w; i++)
