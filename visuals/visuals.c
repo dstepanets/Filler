@@ -79,7 +79,7 @@ static void			convert_line(t_flrvis *fv)
 static void			scanner(t_flrvis *fv)
 {
 	int		y;
-
+	
 	y = 0;
 	fv->oscore = 0;
 	fv->xscore = 0;
@@ -142,12 +142,14 @@ int					main(void)
 			if (fv->map_h == -1)
 				mapsize(fv);
 //			printf("\nMAPSIZE: %d, %d\n", fv->map_h, fv->map_w);
+			ft_strdel(&fv->line);
 			scanner(fv);
-
 		}
 		ft_strdel(&fv->line);
 	}
 	winner(fv);
 	free((void *)fv);
+//		printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
+//		system("leaks -q filler_viz");
 	return (0);
 }
