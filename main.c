@@ -150,11 +150,16 @@ int			main(void)
 {
 	t_flr	*f = NULL;
 	t_plc	*p = NULL;
+
 //		FILE *fp;									/// TEST
-//		fp = freopen("./feed1.txt", "r", stdin); 		/// TEST
+//		fp = fopen("feed1.txt", "a"); 		/// TEST
 
 	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
 		return (-1);
+
+//	fd = open("visuals_input.txt", O_CREAT | O_APPEND); 
+
+	
 	ft_bzero(f, sizeof(t_flr));
 	init_struct(f);
 	whoiswho(f);
@@ -174,6 +179,7 @@ int			main(void)
 //				print_heatmap(f); //
 			p = find_homeland(f);
 //				dprintf(2, "Y:%d X:%d\n", p->by, p->bx);   // 
+
 			ft_printf("%d %d\n", p->by, p->bx);		//"Y X\n" - right order!
 			del_piece(f);
 			del_map(f);
@@ -198,6 +204,7 @@ int			main(void)
 				y++;
 			}
 */	
+
 	free((void *)f);
 
 //	fclose(fp);											/// TEST
@@ -210,5 +217,6 @@ int			main(void)
 
 //	./filler_vm -f maps/map00 -p1 ./dstepane.filler -p2 players/champely.filler 
 //	./filler_vm -f maps/map00 -p1 ./dstepane.filler -p2 players/abanlin.filler
+//	./filler_vm -f maps/map00 -p1 ./dstepane.filler -p2 players/carli.filler
 
 //	./filler_vm -f maps/map00 -p1 players/abanlin.filler -p2 ./players/grati.filler

@@ -21,9 +21,8 @@ void	print_piece(t_flr *f)
 	dprintf(2, "__________________\n");
 }
 
-void	print_map(t_flr *f)						///////TEMP
+void	print_map(t_flr *f)				///////TEMP
 {
-	usleep(1000);
 	dprintf(2, "map  ");
 	int j = 0;
 	for (int i = 0; i < f->map_w; i++)

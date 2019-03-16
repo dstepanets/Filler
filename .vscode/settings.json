@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"filler.h": "c"
+		"filler.h": "c",
+		"curses.h": "c",
+		"fcntl.h": "c"
 	}
 }
