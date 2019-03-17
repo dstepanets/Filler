@@ -17,18 +17,23 @@ static void			winner(t_flrvis *fv)
 	printf("\e[1m");
 	if (fv->oscore > fv->xscore)
 	{
-		printf("			\e[100m\e[34m Angels\e[39m outdrunk \e[31mDevils\e[39m! \e[49m\n");
+		printf("			\e[100m\e[34m Angels\e[33m outdrunk \e[31mDevils\e[33m! \e[49m\n");
 		printf("\n				😇🍷\n");
 	}
 	else if (fv->oscore < fv->xscore)
 	{
-		printf("			\e[100m\e[31m Devils\e[39m outdrunk \e[34mAngels\e[39m! \e[49m\n");
+		printf("			\e[100m\e[31m Devils\e[33m outdrunk \e[34mAngels\e[33m! \e[49m\n");
 		printf("\n				😈🍷\n");
 	}
-	else
+	else if (fv->oscore == fv->xscore && fv->oscore > 0)
 	{
 		printf("			\e[100m\e[96m There was plenty wine for all!\e[39m \e[49m\n");
 		printf("\n				   😇🍷😈\n");
+	}
+	else
+	{
+		printf("			\e[100m\e[33m Something wrong!\e[39m \e[49m\n");
+		printf("\n				🙀\n");
 	}
 	printf("\e[0m");
 	printf("\n\n\n\n\n");

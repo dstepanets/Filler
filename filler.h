@@ -59,8 +59,4 @@ void					fill_heatmap(t_flr *f);
 t_plc					*find_homeland(t_flr *f);
 void 					init_struct_place(t_plc *p);
 
-void	print_heatmap(t_flr *f); ////
-void	print_map(t_flr *f); //
-void	print_piece(t_flr *f); ///
-
 #endif

@@ -22,7 +22,7 @@ SRC = 	main.c \
 
 OBJS = $(SRC:.c=.o)
 LIBFT = libft/libft.a
-VISUALS = visuals/filler_viz
+VISUALS = visuals/visualizer
 
 .PHONY: all clean fclean re
 

@@ -25,7 +25,6 @@ typedef struct			s_flrvis
 	int					map_w;
 	int					oscore;
 	int					xscore;
-	
 } 						t_flrvis;
 
 void					del_arr(char **arr);
