@@ -15,7 +15,6 @@
 
 # include "./libft/includes/libft.h"
 # include <fcntl.h>
-//	# include "mem.h"
 
 typedef struct			s_flr
 {
@@ -29,14 +28,13 @@ typedef struct			s_flr
 	int					fig_w;
 	char				**fig;
 	int					**hm;
-	
-} 						t_flr;
+}						t_flr;
 
 typedef struct			s_plc
 {
 	int					i;
 	int					j;
-	
+
 	int					y;
 	int					x;
 	int					val;
@@ -44,7 +42,6 @@ typedef struct			s_plc
 	int					by;
 	int					bx;
 	int					bval;
-
 }						t_plc;
 
 int						parser(t_flr *f);
@@ -58,11 +55,6 @@ void					del_piece(t_flr *f);
 void					del_heatmap(t_flr *f);
 
 t_plc					*find_homeland(t_flr *f);
-void 					init_struct_place(t_plc *p);
-
-
-void	print_piece(t_flr *f);
-void	print_map(t_flr *f);
-void	print_heatmap(t_flr *f);
+void					init_struct_place(t_plc *p);
 
 #endif

@@ -21,7 +21,7 @@ void	print_piece(t_flr *f)
 	dprintf(2, "__________________\n");
 }
 
-void	print_map(t_flr *f)				///////TEMP
+void	print_map(t_flr *f)
 {
 	dprintf(2, "map  ");
 	int j = 0;
@@ -36,7 +36,7 @@ void	print_map(t_flr *f)				///////TEMP
 	dprintf(2, "=====================================================================\n");
 }
 
-void	print_heatmap(t_flr *f)							///////TEMP
+void	print_heatmap(t_flr *f)
 {
 	dprintf(2, "\n");
 	dprintf(2, "heat ");

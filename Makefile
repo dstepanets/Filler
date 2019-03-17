@@ -12,28 +12,24 @@
 
 NAME = dstepane.filler
 CC = gcc
-FLAGS = -g -Wall -Wextra -Werror###debugging FLAG -g! Don't foreget libft too!!!!
+FLAGS = -Wall -Wextra -Werror
 HEAD = ./filler.h
 SRC = 	main.c \
 		parser.c \
 		purgatory.c \
 		heat_map.c \
-		algorithm.c \
-		print-debug.c 		##temp
-#		mem.c 				###remove
+		algorithm.c
 OBJS = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 VISUALS = visuals/visualizer
 
 .PHONY: all clean fclean re
 
-all: fclean $(NAME)
+all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS) $(VISUALS)
-#	$(CC) $(FLAGS) $(OBJS) $(LIBFT) libmemd.a -o $(NAME)  ###remove libmemd.a
 	@$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-	@echo "\033[32mFiller executable compiled.\033[0m"
-##	make clean
+	@echo "\033[32m\033[100mFiller executable compiled.\033[0m\033[49m"
 
 $(LIBFT):
 	@make -C libft

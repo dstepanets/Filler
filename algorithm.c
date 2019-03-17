@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void 		init_struct_place(t_plc *p)
+void			init_struct_place(t_plc *p)
 {
 	p->i = 0;
 	p->j = 0;
@@ -24,10 +24,10 @@ void 		init_struct_place(t_plc *p)
 	p->bval = 0;
 }
 
-
-static int				asterisk(t_flr *f, t_plc *p, int *touch)
+static int		asterisk(t_flr *f, t_plc *p, int *touch)
 {
-	if ((p->y + p->i >= f->map_h) || (p->x + p->j >= f->map_w))
+	if ((p->y + p->i >= f->map_h) || (p->x + p->j >= f->map_w) ||
+		(p->y + p->i < 0) || (p->x + p->j < 0))
 		return (0);
 	else if (ft_toupper(f->map[p->y + p->i][p->x + p->j]) == f->me)
 	{
@@ -42,7 +42,7 @@ static int				asterisk(t_flr *f, t_plc *p, int *touch)
 	return (1);
 }
 
-int				try_place(t_flr *f, t_plc *p)
+static int		try_place(t_flr *f, t_plc *p)
 {
 	int		touch;
 
@@ -81,7 +81,7 @@ void			find_places(t_flr *f, t_plc *p)
 			}
 			p->x++;
 		}
-		p->x = 0;
+		p->x = -f->fig_w;
 		p->y++;
 	}
 }
@@ -101,10 +101,6 @@ t_plc			*find_homeland(t_flr *f)
 			{
 				p->y -= f->fig_h;
 				p->x -= f->fig_w;
-				while (p->y < 0)
-					p->y++;
-				while (p->x < 0)
-					p->x++;
 				find_places(f, p);
 			}
 			p->x++;

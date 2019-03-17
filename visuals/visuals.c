@@ -10,62 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "visuals.h"
-
-static void			winner(t_flrvis *fv)
-{
-	printf("\e[1m");
-	if (fv->oscore > fv->xscore)
-	{
-		printf("			\e[100m\e[34m Angels\e[33m outdrunk \e[31mDevils\e[33m! \e[49m\n");
-		printf("\n				😇🍷\n");
-	}
-	else if (fv->oscore < fv->xscore)
-	{
-		printf("			\e[100m\e[31m Devils\e[33m outdrunk \e[34mAngels\e[33m! \e[49m\n");
-		printf("\n				😈🍷\n");
-	}
-	else if (fv->oscore == fv->xscore && fv->oscore > 0)
-	{
-		printf("			\e[100m\e[96m There was plenty wine for all!\e[39m \e[49m\n");
-		printf("\n				   😇🍷😈\n");
-	}
-	else
-	{
-		printf("			\e[100m\e[33m Something wrong!\e[39m \e[49m\n");
-		printf("\n				🙀\n");
-	}
-	printf("\e[0m");
-	printf("\n\n\n\n\n");
-}
-
-static void			print_score(t_flrvis *fv)
-{
-	printf("\n		\e[4mscore 🍷:\e[0m	\e[1m\e[34m😇: %d		\e[31m😈: %d\e[39m\e[0m\n", fv->oscore, fv->xscore);
-
-}
-
-static void			print_border(t_flrvis *fv)
-{
-	int 	i;
-	printf("\t\t🌳");
-	i = 0;
-	while (i++ <= fv->map_w)
-		printf("🌳");
-	printf("\n");
-}
+#include "visuals.h"
 
 static void			convert_line(t_flrvis *fv)
 {
 	int		i;
-	
+
 	printf("\t\t🌳");
 	i = 4;
 	while (fv->line[i])
 	{
 		if (fv->line[i] == '.')
 			printf("%lc", L'🍷');
-		else if (fv->line[i] == 'O'|| fv->line[i] == 'o')
+		else if (fv->line[i] == 'O' || fv->line[i] == 'o')
 		{
 			fv->oscore++;
 			printf("%lc", L'😇');
@@ -81,10 +38,10 @@ static void			convert_line(t_flrvis *fv)
 	ft_strdel(&fv->line);
 }
 
-static void			scanner(t_flrvis *fv)
+static void			map_printer(t_flrvis *fv)
 {
 	int		y;
-	
+
 	y = 0;
 	fv->oscore = 0;
 	fv->xscore = 0;
@@ -108,7 +65,6 @@ static void			scanner(t_flrvis *fv)
 		printf("\n\n\n\n\n");
 		usleep(5000);
 	}
-//	system("clear");
 }
 
 static void			mapsize(t_flrvis *fv)
@@ -139,7 +95,6 @@ int					main(void)
 	if (!(fv = (t_flrvis *)malloc(sizeof(t_flrvis))))
 		return (-1);
 	init_struct(fv);
-
 	setlocale(LC_ALL, "");
 	while (get_next_line(0, &fv->line) > 0)
 	{
@@ -147,15 +102,12 @@ int					main(void)
 		{
 			if (fv->map_h == -1)
 				mapsize(fv);
-//			printf("\nMAPSIZE: %d, %d\n", fv->map_h, fv->map_w);
 			ft_strdel(&fv->line);
-			scanner(fv);
+			map_printer(fv);
 		}
 		ft_strdel(&fv->line);
 	}
 	winner(fv);
 	free((void *)fv);
-//		printf("\n++++++++++++++++++++++++LEAKS++++++++++++++++++++++++++++++++++++++\n");
-//		system("leaks -q filler_viz");
 	return (0);
 }

@@ -17,7 +17,6 @@
 # include <wchar.h>
 # include <locale.h>
 
-
 typedef struct			s_flrvis
 {
 	char				*line;
@@ -25,8 +24,11 @@ typedef struct			s_flrvis
 	int					map_w;
 	int					oscore;
 	int					xscore;
-} 						t_flrvis;
+}						t_flrvis;
 
 void					del_arr(char **arr);
+void					print_border(t_flrvis *fv);
+void					print_score(t_flrvis *fv);
+void					winner(t_flrvis *fv);
 
-#endif 
+#endif

@@ -12,11 +12,11 @@
 
 NAME = visualizer
 CC = gcc
-FLAGS = -g -Wall -Wextra -Werror###debugging FLAG -g! Don't foreget libft too!!!!
+FLAGS = -Wall -Wextra -Werror
 HEAD = visuals.h
 SRC = 	visuals.c \
+		visuals2.c \
 		../purgatory.c 
-
 OBJS = $(SRC:.c=.o)
 
 .PHONY: all clean fclean re
@@ -26,7 +26,6 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@$(CC) $(FLAGS) $(OBJS) ../libft/libft.a -o $(NAME)
 	@echo "\033[35m\033[43mFiller visualizer compiled.\033[0m\033[49m"
-##	make clean
 
 $(OBJS):
 	@$(CC) $(FLAGS) -c $(SRC)

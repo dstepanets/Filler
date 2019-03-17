@@ -74,8 +74,7 @@ int				main(void)
 {
 	t_flr	*f;
 	t_plc	*p;
-//		FILE *fp;									/// TEST
-//		fp = freopen("./feed1.txt", "r", stdin);
+
 	if (!(f = (t_flr *)malloc(sizeof(t_flr))))
 		return (-1);
 	init_struct(f);
@@ -87,7 +86,6 @@ int				main(void)
 				return (-1);
 			fill_heatmap(f);
 			p = find_homeland(f);
-				print_heatmap(f);  ///
 			ft_printf("%d %d\n", p->by, p->bx);
 			del_piece(f);
 			del_map(f);
@@ -98,9 +96,5 @@ int				main(void)
 		ft_strdel(&f->line);
 	}
 	free((void *)f);
-//	fclose(fp);
-//	system("leaks -q dstepane.filler");
 	return (0);
 }
-
-//	./filler_vm -f maps/map01 -p1 ./dstepane.filler -p2 ./players/carli.filler | visuals/visualizer
