@@ -27,8 +27,8 @@ static void			winner(t_flrvis *fv)
 	}
 	else
 	{
-		printf("			\e[100m\e[96 mWine was enough for all!\e[39m \e[49m\n");
-		printf("\n				   🍷\n");
+		printf("			\e[100m\e[96m There was plenty wine for all!\e[39m \e[49m\n");
+		printf("\n				   😇🍷😈\n");
 	}
 	printf("\e[0m");
 	printf("\n\n\n\n\n");
@@ -103,6 +103,7 @@ static void			scanner(t_flrvis *fv)
 		printf("\n\n\n\n\n");
 		usleep(5000);
 	}
+//	system("clear");
 }
 
 static void			mapsize(t_flrvis *fv)
