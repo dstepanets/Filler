@@ -24,13 +24,22 @@ void 		init_struct_place(t_plc *p)
 	p->bval = 0;
 }
 
-void			remember_position(t_plc *p)
+
+static int				asterisk(t_flr *f, t_plc *p, int *touch)
 {
-	p->by = p->y;
-	p->bx = p->x;
-	p->bval = p->val;
-//	printf("p->by: %d, p->bx: %d\n", p->by, p->bx);
-//	printf("p->bval: %d\n", p->bval);
+	if ((p->y + p->i >= f->map_h) || (p->x + p->j >= f->map_w))
+		return (0);
+	else if (ft_toupper(f->map[p->y + p->i][p->x + p->j]) == f->me)
+	{
+		(*touch)++;
+		if (*touch > 1)
+			return (0);
+	}
+	else if (f->map[p->y + p->i][p->x + p->j] == '.')
+		p->val += f->hm[p->y + p->i][p->x + p->j];
+	else
+		return (0);
+	return (1);
 }
 
 int				try_place(t_flr *f, t_plc *p)
@@ -46,20 +55,8 @@ int				try_place(t_flr *f, t_plc *p)
 		while (p->j < f->fig_w)
 		{
 			if (f->fig[p->i][p->j] == '*')
-			{
-				if ((p->y + p->i >= f->map_h) || (p->x + p->j >= f->map_w))
+				if (!asterisk(f, p, &touch))
 					return (0);
-				else if (ft_toupper(f->map[p->y + p->i][p->x + p->j]) == f->me)
-				{
-					touch++;
-					if (touch > 1)
-						return (0);
-				}
-				else if (f->map[p->y + p->i][p->x + p->j] == '.')
-					p->val += f->hm[p->y + p->i][p->x + p->j];
-				else
-					return (0);
-			}
 			p->j++;
 		}
 		p->j = 0;
@@ -77,23 +74,16 @@ void			find_places(t_flr *f, t_plc *p)
 		while (p->x < f->map_w)
 		{
 			if (try_place(f, p) && (!p->bval || p->val < p->bval))
-				remember_position(p);
+			{
+				p->by = p->y;
+				p->bx = p->x;
+				p->bval = p->val;
+			}
 			p->x++;
 		}
 		p->x = 0;
 		p->y++;
 	}
-}
-
-void			offset(t_flr *f, t_plc *p)
-{
-	p->y -= f->fig_h;
-	p->x -= f->fig_w;
-	while (p->y < 0)
-		p->y++;
-	while (p->x < 0)
-		p->x++;
-	find_places(f, p);
 }
 
 t_plc			*find_homeland(t_flr *f)
@@ -108,7 +98,15 @@ t_plc			*find_homeland(t_flr *f)
 		while (p->x < f->map_w && p->y < f->map_h)
 		{
 			if (ft_toupper(f->map[p->y][p->x]) == f->me)
-				offset(f, p);
+			{
+				p->y -= f->fig_h;
+				p->x -= f->fig_w;
+				while (p->y < 0)
+					p->y++;
+				while (p->x < 0)
+					p->x++;
+				find_places(f, p);
+			}
 			p->x++;
 		}
 		p->x = 0;

@@ -47,16 +47,22 @@ typedef struct			s_plc
 
 }						t_plc;
 
+int						parser(t_flr *f);
+
+int						create_heatmap(t_flr *f);
+void					fill_heatmap(t_flr *f);
 
 void					del_arr(char **arr);
 void					del_map(t_flr *f);
 void					del_piece(t_flr *f);
 void					del_heatmap(t_flr *f);
 
-int						create_heatmap(t_flr *f);
-void					fill_heatmap(t_flr *f);
-
 t_plc					*find_homeland(t_flr *f);
 void 					init_struct_place(t_plc *p);
+
+
+void	print_piece(t_flr *f);
+void	print_map(t_flr *f);
+void	print_heatmap(t_flr *f);
 
 #endif

@@ -15,11 +15,12 @@ CC = gcc
 FLAGS = -g -Wall -Wextra -Werror###debugging FLAG -g! Don't foreget libft too!!!!
 HEAD = ./filler.h
 SRC = 	main.c \
+		parser.c \
 		purgatory.c \
 		heat_map.c \
 		algorithm.c \
+		print-debug.c 		##temp
 #		mem.c 				###remove
-
 OBJS = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 VISUALS = visuals/visualizer

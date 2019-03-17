@@ -40,9 +40,7 @@ void			del_arr(char **arr)
 	{
 		while (arr[i])
 			free(arr[i++]);
-//		free(arr);
 		ft_memdel((void **)&arr);
-//		arr = NULL;
 	}
 }
 
@@ -61,8 +59,6 @@ void			del_piece(t_flr *f)
 			ft_strdel(&f->fig[i++]);
 		}
 		ft_strdel(&f->fig[i]);
-	//	free(f->fig);
-	//	f->fig = NULL;
 		ft_memdel((void **)&f->fig);
 	}
 }

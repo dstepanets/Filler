@@ -24,18 +24,18 @@ static int		assign_heat(t_flr *f, intmax_t i, int x, int y)
 		(y - 1 >= 0 && x - 1 >= 0 && f->hm[y - 1][x - 1] == i) ||
 		(x - 1 >= 0 && f->hm[y][x - 1] == i) ||
 		(y < f->map_h && x - 1 >= 0 && f->hm[y + 1][x - 1] == i))
-		{
-			f->hm[y][x] = i + 1;
-			f->map_h++;
-			f->map_w++;
-			return (1);
-		}
+	{
+		f->hm[y][x] = i + 1;
+		f->map_h++;
+		f->map_w++;
+		return (1);
+	}
 	f->map_h++;
 	f->map_w++;
 	return (0);
 }
 
-static void			fill_heatmap2(t_flr *f, intmax_t i, intmax_t *done)
+static void		fill_heatmap2(t_flr *f, intmax_t i, intmax_t *done)
 {
 	int		x;
 	int		y;
@@ -70,13 +70,9 @@ void			fill_heatmap(t_flr *f)
 	{
 		save = done;
 		fill_heatmap2(f, i, &done);
-//		print_heatmap(f);
-//		print_map(f);
 		i++;
 	}
 }
-
-
 
 static void		create_heatmap2(t_flr *f, int *y)
 {
@@ -95,7 +91,6 @@ static void		create_heatmap2(t_flr *f, int *y)
 	}
 	(*y)++;
 }
-
 
 int				create_heatmap(t_flr *f)
 {
@@ -118,4 +113,4 @@ int				create_heatmap(t_flr *f)
 	}
 	f->hm[y] = NULL;
 	return (0);
-}		
+}
