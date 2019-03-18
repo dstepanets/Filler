@@ -49,11 +49,10 @@ void			del_piece(t_flr *f)
 	int		i;
 
 	i = 0;
-	f->fig_h = 0;
-	f->fig_w = 0;
+	
 	if (f->fig)
 	{
-		while (i < f->fig_h + 1)
+		while (i < f->fig_h)
 		{
 			ft_bzero(f->fig[i], f->fig_w);
 			ft_strdel(&f->fig[i++]);
@@ -61,6 +60,8 @@ void			del_piece(t_flr *f)
 		ft_strdel(&f->fig[i]);
 		ft_memdel((void **)&f->fig);
 	}
+	f->fig_h = 0;
+	f->fig_w = 0;
 }
 
 void			del_map(t_flr *f)
