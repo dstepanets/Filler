@@ -49,7 +49,6 @@ void			del_piece(t_flr *f)
 	int		i;
 
 	i = 0;
-	
 	if (f->fig)
 	{
 		while (i < f->fig_h)
