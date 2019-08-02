@@ -93,3 +93,5 @@ heat | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |12 |13 |14 |15 |16 |
 * 0 - enemy's territory 
 * -1 - my territory 
 * other numbers - free squares (less value, closer to enemy)
+
+So, each turn my program finds a valid with the lowest sum of free squares and puts a piece there. It wins very well :)
