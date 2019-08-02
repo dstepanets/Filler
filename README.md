@@ -12,7 +12,7 @@ The goal of this project is to write a bot which can win at least 3 of 5 games w
 
 *This is the project of the Algorithms branch of the School 42 curriculum.*
 
-**Detailed description of the task: [lem-in.en.pdf](https://github.com/dstepanets/Lem_in/blob/master/lem-in.en.pdf)**
+**Detailed description of the task: [filler.en.pdf](https://github.com/dstepanets/Filler/blob/master/filler.en.pdf)**
 
 ## Usage
 
