@@ -8,7 +8,7 @@ Algorithmic game. Two bots place random pieces on a map, trying to occupy the mo
 
 Two players take turns placing randomly generated pieces on a rectangle map. They earn a point for each covered square of a map. A piece must overlap one and only one square of 'friendly' territory, all other squares of its placement must be free. The game stops as soon as a given piece can no longer be placed. Wins the player who covered the larger area of a map.
 
-The goal of this project is to write a bot which can win at least 3 of 5 games with every provided bot.
+The goal of this project is to write a bot that can win at least 3 of 5 games with every provided bot.
 
 *This is the project of the Algorithms branch of the School 42 curriculum.*
 
@@ -21,13 +21,13 @@ Compile with `make`. To run the game we use the virtual machine `filler_vm`, pro
 ```
 ./filler_vm -f <map> -p1 <player1.filler> -p2 <player2.filler>
 
-   -f  --file		use a map file (required)
-   -p1 --player1	use filler binary as a first player
-   -p2 --player2	use filler binary as a second player
+   -f  --file        use a map file (required)
+   -p1 --player1    use filler binary as a first player
+   -p2 --player2    use filler binary as a second player
 
 ```
 
-After compilation, my player `dstepane.filler` is placed in the root. The six enemy bots are in `players` directory. Three maps of different size in `maps` folder.
+After compilation, my player `dstepane.filler` is placed in the root. The six enemy bots are in the `players` directory. Three maps of different sizes in the `maps` folder.
 
 #### Visuals
 
@@ -66,9 +66,9 @@ Piece 2 3:
 .**
 ```
 
-The strategy is to place a piece as close to enemy's territory, as possible. This will limit his expansion.
+The strategy is to place a piece as close to the enemy's territory, as possible. This will limit his expansion.
 
-To achieve this, my bot each turn generates a [heat map](https://en.wikipedia.org/wiki/Heat_map) of the territory. Squares closest to enemy are marked as preferred for placement.
+To achieve this, my bot each turn generates a [heat map](https://en.wikipedia.org/wiki/Heat_map) of the territory. Squares closest to the enemy are marked as preferred for placement.
 
 Based on the map above, my bot generated this heat map. 
 
